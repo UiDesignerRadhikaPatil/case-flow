@@ -8,6 +8,7 @@
   height: 100vh;
   /* background-color: #f4f4f4; */
 }
+
 .case1 .container {
   width: 500px;
   padding: 20px;
@@ -33,6 +34,7 @@
   border: 1px solid #ccc;
   border-radius: 10px;
 }
+
 .case1 button {
   /* background-color: #4caf50; */
   background-color: rgb(86, 155, 235);
@@ -43,9 +45,25 @@
   cursor: pointer;
   font-size: 16px;
 }
+
 .case1 button:hover {
   background-color: rgb(9, 102, 208);
 }
+
+
+@media screen and (max-width: 480px) {
+  .case1 .container {
+    width: 400px;
+    padding: 20px;
+    /* background-color: #fff; */
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+    border-radius: 30px;
+    text-align: center;
+    margin-right: 50px;
+  }
+}
+
+
 /* //todo==============================case2================= */
 .case2 {
   margin: 0;
@@ -56,6 +74,7 @@
   height: 100vh;
   /* background-color: #f4f4f4; */
 }
+
 .case2 .container {
   width: 500px;
   padding: 20px;
@@ -75,9 +94,11 @@
   cursor: pointer;
   font-size: 12px;
 }
+
 .case2 button:hover {
   background-color: rgb(9, 102, 208);
 }
+
 @media screen and (max-width: 480px) {
   .case2 .container {
     width: 400px;
@@ -86,8 +107,17 @@
     /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
     border-radius: 30px;
     text-align: center;
+    margin-right: 50px;
+  }
+
+  .nav-header {
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+    width: 100%;
   }
 }
+
 /* //todo==============================case3================= */
 .case3 {
   margin: 0;
@@ -98,14 +128,16 @@
   height: 100vh;
   /* background-color: #f4f4f4; */
 }
+
 .case3 .container {
   width: 500px;
   padding: 20px;
   /* background-color: #fff; */
   /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
   border-radius: 30px;
-  text-align: center;
+
 }
+
 .case3 label {
   position: relative;
   display: block;
@@ -114,6 +146,7 @@
   font-weight: 500;
   color: gray;
 }
+
 .case3 input {
   width: 100%;
   padding: 10px;
@@ -131,20 +164,32 @@
   border-radius: 10px;
   cursor: pointer;
   font-size: 12px;
+  height: 40px;
+  width: 60px;
+
+
 }
+
 .case3 button:hover {
   background-color: rgb(9, 102, 208);
 }
+
 @media screen and (max-width: 480px) {
   .case3 .container {
     width: 400px;
-    padding: 20px;
-    /* background-color: #fff; */
-    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
     border-radius: 30px;
-    text-align: center;
+    text-align: left;
+    font-size: 15px;
+    margin-right: 20%;
+  }
+
+  .case3 input{
+    width: 300px;
   }
 }
+
+
+
 
 /* //todo==============================case4================= */
 .case4 {
@@ -162,7 +207,7 @@
   /* background-color: #fff; */
   /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
   border-radius: 30px;
-  text-align: center;
+  text-align: left;
 }
 .case4 label {
   position: relative;
@@ -171,6 +216,7 @@
   font-size: small;
   font-weight: 500;
   color: gray;
+  margin-top: 5%;
 }
 .case4 input {
   width: 100%;
@@ -186,7 +232,6 @@
   border: 1px solid #ccc;
   border-radius: 10px;
 }
-
 .case4 button {
   /* background-color: #4caf50; */
   background-color: rgb(86, 155, 235);
@@ -196,21 +241,23 @@
   border-radius: 10px;
   cursor: pointer;
   font-size: 12px;
-  margin: 20px;
+  margin-top: 6%;
 }
 .case4 button:hover {
   background-color: rgb(9, 102, 208);
 }
 @media screen and (max-width: 480px) {
   .case4 .container {
-    width: 400px;
+    width: 100%;
     padding: 20px;
     /* background-color: #fff; */
     /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
     border-radius: 30px;
-    text-align: center;
+    text-align: left;
+    margin-right: 10%;
   }
 }
+
 
 /* //todo==============================case5================= */
 .case5 {
@@ -222,6 +269,7 @@
   /* height: 100vh; */
   /* background-color: #f4f4f4; */
 }
+
 .case5 .container {
   /* width: 60%; */
   /* padding: 10px; */
@@ -242,6 +290,7 @@
   font-size: 12px;
   margin: 20px;
 }
+
 .case5 button:hover {
   background-color: rgb(9, 102, 208);
 }
@@ -260,133 +309,320 @@
 
 .case5 .toggle-button.active {
   /* background-color: #2ecc71; */
-  background-color: #043a77;
+  background-color: rgb(4, 58, 119);
 }
+
 .case5 .selectbar {
   width: 800px;
   margin-left: 100px;
   margin-top: 30px;
 }
+
 .case5 .selection {
   margin-left: 100px;
   margin-top: 30px;
 }
 
 @media screen and (max-width: 480px) {
+
+
   .case5 .selectbar {
     width: 360px;
     margin-left: 15px;
   }
+
   .case5 .selection {
     margin-top: 30px;
   }
-}
 
-/* //todo==============================case6================= */
-.case6 {
-  margin: 0;
-  font-family: "Arial", sans-serif;
-  display: flex;
-  justify-content: left;
 
-  /* background-color: #f4f4f4; */
-}
-.case6 .container {
-  width: 800px;
-  padding: 20px;
-  /* background-color: #fff; */
-  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
-  border-radius: 30px;
-  text-align: left;
-}
+  .case5 .selected-value {
+    margin-left: 3%;
 
-.case6 button {
-  /* background-color: #4caf50; */
-  background-color: rgb(86, 155, 235);
-  color: #fff;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  font-size: 12px;
-  margin: 20px;
-}
-.case6 button:hover {
-  background-color: rgb(9, 102, 208);
-}
-@media screen and (max-width: 480px) {
-  .case4 .container {
-    width: 400px;
-    padding: 20px;
-    /* background-color: #fff; */
-    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
-    border-radius: 30px;
-    text-align: center;
   }
-}
 
-/* //todo==============================case4================= */
-.case8 {
-  margin: 0;
-  font-family: "Arial", sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  /* background-color: #f4f4f4; */
-}
-.case8 .container {
-  width: 500px;
-  padding: 20px;
-  /* background-color: #fff; */
-  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
-  border-radius: 30px;
-  text-align: center;
-}
-.case8 label {
-  position: relative;
-  display: block;
-  text-align: left;
-  font-size: small;
-  font-weight: 500;
-  color: gray;
-}
-.case8 input {
-  width: 100%;
-  padding: 10px;
-  box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-}
-.case8 select {
-  width: 100%;
-  padding: 10px;
-  box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-}
-
-.case8 button {
-  /* background-color: #4caf50; */
-  background-color: rgb(86, 155, 235);
-  color: #fff;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 12px;
-  margin: 20px;
-}
-.case8 button:hover {
-  background-color: rgb(9, 102, 208);
-}
-@media screen and (max-width: 480px) {
-  .case8 .container {
-    width: 400px;
-    padding: 20px;
-    /* background-color: #fff; */
-    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
-    border-radius: 30px;
-    text-align: center;
+  .section-button {
+    margin-left: 3%;
+    width: 100%;
+    margin-bottom: 10px;
   }
+
+  .section-button h6 {
+    text-align: left;
+    margin-top: 10px;
+
+  }
+
+  /* //todo==============================case6================= */
+  .case6 {
+    margin: 0;
+    font-family: "Arial", sans-serif;
+    display: flex;
+    justify-content: left;
+    /* background-color: #f4f4f4; */
+  }
+  .case6 .container {
+
+    padding: 20px;
+    border-radius: 30px;
+    text-align: left;
+  }
+  
+  
+  .case6 button {
+    /* background-color: #4caf50; */
+    background-color: rgb(86, 155, 235);
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 12px;
+    margin: 20px;
+    
+   
+  }
+  .case6 button:hover {
+    background-color: rgb(9, 102, 208);
+  }
+  @media screen and (max-width: 480px) {
+    .case4 .container {
+      width: 400px;
+      padding: 20px;
+      /* background-color: #fff; */
+      /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+      border-radius: 30px;
+      text-align: center;
+    }
+
+    .firmservices-btn {
+      flex-direction: column;
+      flex-wrap: wrap;
+  }
+
+  .firmservices-btn lable{
+      font-size: 18px;
+  }
+
+  .button-container>div {
+      width: 100%;
+      margin-bottom: 10px;
+  }
+
+  .tax-preparation,
+  .planning,
+  .advisory,
+  .resolution,
+  .payroll,
+  .accounting,
+  .button-component {
+      width: 100%;
+      
+
+  }
+
+  .second-list {
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 2%
+  }
+
+  .accounting,
+  .audit,
+  .law-firm,
+  .bookkeeping,
+  .other,
+  .accounting
+  {
+      width: 100%;      
+
+  }
+
+  .second-list lable{
+      font-size: 16px;
+  }
+
+  .sec-button{
+      width: 30%;
+  }
+
+  .check-box{
+      display: flex;
+  }
+
+  .check-box input lable{
+  font-size: 16px;
+  }
+  }
+
+  /* //todo==============================case7================= */
+  .case7 button {
+    /* background-color: #4caf50; */
+    background-color: rgb(86, 155, 235);
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 12px;
+    margin: 20px;
+    
+   
+  }
+  .case7 button:hover {
+    background-color: rgb(9, 102, 208);
+  }
+
+  @media screen and (max-width: 480px) {
+
+    .containerf {
+      width: 400px;
+      padding: 20px;
+      /* background-color: #fff; */
+      /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+      border-radius: 30px;
+      text-align: center;
+
+    }
+
+    .container-selection {
+      margin-right: 10%;
+      text-align: left;
+    }
+  }
+
+
+
+  /* //todo==============================case8================= */
+
+  .case8 {
+    margin: 0;
+    font-family: "Arial", sans-serif;
+    display: flex;
+    justify-content: center;
+    /* background-color: #f4f4f4; */
+  }
+
+ .case8 .container {
+    width: 800px;
+    padding: 20px;
+    border-radius: 30px;
+    text-align: left;
+    margin-left: 20%;
+  }
+
+  
+
+
+
+  @media screen and (max-width: 480px) {
+    .firmsetting-container {
+      flex-direction: column;
+  }
+
+  .firmleft-container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+  }
+
+
+  .urlinput {
+      width: 100%;
+  }
+
+  .outer-lable {
+      margin-top: 0%;
+  }
+
+  .currency-section {
+      flex-direction: column;
+
+
+  }
+
+  .currency {
+      width: 100%;
+      margin-top: 10px;
+      font-size: 16px;
+      margin-bottom: 4%;
+      display: flex;
+      flex-direction: column;
+  }
+
+  .language-class {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+  }
+
+  .imageright-container {
+      display: none;
+
+  }
+
+  }
+
+
+  /* //todo==============================case9================= */
+
+  
+@media only screen and (max-width: 900px) {
+  .password-sub-container {
+      margin-top: 20%;
+  }
+
+ 
+  .password-sub-container{
+      flex-direction: column;   
+  } 
+}
+
+ /* //todo==============================case10================= */
+
+
+ 
+@media only screen and (max-width: 900px) {
+  .firmleft-container {
+     display: none;
+  }
+
+  .image-section {
+    width: 100%;
+  
+  }
+
+  .time-zone-container{
+    width: 200%;
+    flex-direction: column;
+  
+  }
+
+  .date-section{
+    width: 200%;
+    margin-top: 10%;
+  }
+ 
+}
+
+ /* //todo==============================case11================= */
+ @media only screen and (max-width: 900px) {
+
+  .message {
+ 
+    justify-content: center;
+    margin-left: 5%;
+}
+
+.message p {
+ 
+    font-size: 14px;
+    width: 300px;
+}
+ }
+
+
+
 }

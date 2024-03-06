@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import logo from "./static/logo.png";
 import Select from "react-select";
-//import "./adminSignup.css";
 import "./signup.css";
 //import "./static/confirmation.css";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -14,8 +13,10 @@ import OtpInput from "react-otp-input";
 
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import DatePicker from "react-datepicker";
+import 'react-datepicker/dist/react-datepicker.css';
 import MultiStage from "../component/MultiStepProgressBar";
 import startsWith from "lodash.startswith";
+import setting from 'C:/Users/Admin/Desktop/flow-signup/frontend/src/img/setting.png'
 
 //import "./static/datepicker.css";
 
@@ -25,6 +26,7 @@ import startsWith from "lodash.startswith";
 // import "../pages/static/firmrole.css";
 // import "../pages/static/firmsetting.css";
 import firmsetting from "../pages/static/firm setting.png";
+import '../pages/signup.css'
 
 const SignUp = () => {
   //!send all sign up data to backend API
@@ -84,7 +86,7 @@ const SignUp = () => {
   //todo ========    #page control  logic   No1 =======
 
   //!chang state for testing
-  const [currentStep, setCurrentStep] = useState(2);
+  const [currentStep, setCurrentStep] = useState(5);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -987,7 +989,15 @@ const SignUp = () => {
 
   //todo book session for demo  case 10:
 
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState("");
+
+  const handleNextClick = (e) => {
+    e.preventDefault();
+
+    console.log(selectedDate);
+
+  };
+
 
   const renderFormFields = () => {
     switch (currentStep) {
@@ -1042,9 +1052,20 @@ const SignUp = () => {
         return (
           <>
             <div className=" col-12 ">
-              <div style={{ margin: "20px" }}>
-                <img style={{ width: "30px" }} src={logo} alt="" />
-                <b>PMS Solutions</b>
+              <div className="nav-header col-12" style={{ display: "flex" }}>
+                <div className="col-2" style={{ margin: "20px", display: 'flex' }}>
+                  <div style={{ display: 'flex' }}>
+                    <div>
+                      <img style={{ width: "30px" }} src={logo} alt="" />
+                      <b>PMS Solutions</b>
+                    </div>
+                  </div>
+                </div>
+                <div className="path col-10" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', }}>
+                  <div className="steps" style={{ justifyContent: 'center', alignContent: 'center' }}>
+                    <MultiStage steps={totalSteps} currentStepForm={2} stageNames={stageNames} />
+                  </div>
+                </div>
               </div>
               <div className=" col-12 case2">
                 <div className="container">
@@ -1064,7 +1085,7 @@ const SignUp = () => {
                         value={otp}
                         onChange={setOtp}
                         numInputs={6}
-                      
+
                         renderInput={(props) => (
                           <input
                             {...props}
@@ -1073,7 +1094,7 @@ const SignUp = () => {
                               height: "100px", // Adjust as needed
                               fontSize: "42px", // Adjust as needed
                               fontFamily: "Arial, sans-serif", // Replace with your desired font
-                              marginRight:"10px "
+                              marginRight: "10px "
 
                               // Add any other styling properties as needed
                             }}
@@ -1116,32 +1137,37 @@ const SignUp = () => {
       case 3:
         return (
           <>
-            <div className=" col-12  ">
-              <div className="col-12" style={{ display: "flex" }}>
-                <div className="col-4" style={{ margin: "20px" }}>
-                  <img style={{ width: "30px" }} src={logo} alt="" />
-                  <b>PMS Solutions</b>
+            <div className="nav-header col-12" style={{ display: "flex" }}>
+              <div className="col-2" style={{ margin: "20px", display: 'flex' }}>
+                <div style={{ display: 'flex' }}>
+                  <div>
+                    <img style={{ width: "30px" }} src={logo} alt="" />
+                    <b>PMS Solutions</b>
+                  </div>
                 </div>
-                <div className="path col-8" style={{ marginRight: "200px" }}>
+              </div>
+              <div className="path col-10" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', }}>
+                <div className="steps" style={{ justifyContent: 'center', alignContent: 'center' }}>
                   <MultiStage steps={totalSteps} currentStepForm={2} stageNames={stageNames} />
                 </div>
               </div>
             </div>
-
-            <div className=" col-12 case3">
+            <div className=" col-12 case3" >
               <div className="container">
-                <h2>Your Information</h2>
+                <div className='title-info' style={{ display: 'flex' }}>
+                  <h2 style={{ fontWeight: 'bold', }}>Your information</h2>
+                </div>
                 <form>
-                  <div>
-                    <div>
-                      <label>First Name:</label>
-
-                      <input required className="fname" placeholder="First name" value={firstname} onChange={(e) => setFirstname(e.target.value)} />
+                  <div style={{ marginTop: '5%' }} >
+                    <div className='name-1' style={{ flexDirection: 'column', marginRight: '2%', marginBottom: '20px', }}>
+                      <label>First Name</label>
+                      <div>
+                        <input required className="lname" placeholder="first name" value={firstname} onChange={(e) => setFirmName(e.target.value)} />
+                      </div>
                     </div>
 
-                    <div>
+                    <div className="name-2" style={{ flexDirection: 'column', marginRight: '2%', marginBottom: '5px' }}>
                       <label>Last Name:</label>
-
                       <div>
                         <input required className="lname" placeholder="Last name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
                       </div>
@@ -1153,6 +1179,7 @@ const SignUp = () => {
                       <div style={{ marginLeft: "1px" }}>
                         <label htmlFor="phone">Phone Number:</label>
                         <PhoneInput
+                          inputStyle={{ width: '98%', borderRadius: '10px', textAlign: 'left', fontSize: '12px' }}
                           country={"us"}
                           placeholder="enter phone number "
                           onChange={(value) => {
@@ -1169,18 +1196,21 @@ const SignUp = () => {
                     </label>
                     {!valid && <p>Please enter a valid phone number.</p>}
                   </div>
+                  <br />
                 </form>
+
+                <button onClick={submitUserinfo} className="next" style={{ justifyContent: 'left' }}>
+                  Next
+                </button>
               </div>
-            </div>
 
+            </div>
             <br />
-            <button onClick={submitUserinfo} className="next">
-              Next
-            </button>
 
-            <div className="toast">
-              <ToastContainer />
-            </div>
+
+            {/* <div className="toast">
+                  <ToastContainer />
+              </div> */}
           </>
         );
 
@@ -1203,13 +1233,10 @@ const SignUp = () => {
                 <h2>Firm Information</h2>
                 <form>
                   <label>Firm Name</label>
-
                   <input type="text" placeholder="Enter firm name" value={value} onChange={(e) => setFirmName(e.target.value)} />
-
                   <div className="col-12">
                     <div style={{ width: "100%" }}>
                       <label style={{ marginTop: "30px" }}>Country</label>
-
                       <Select
                         value={selectedCountryD}
                         onChange={(option) => {
@@ -1239,7 +1266,6 @@ const SignUp = () => {
               </div>
             </div>
             <br />
-
             {/* <button onClick={prevStep} className="pre">
               Previous
             </button> */}
@@ -1261,46 +1287,53 @@ const SignUp = () => {
                 <MultiStage steps={totalSteps} currentStepForm={2} stageNames={stageNames} />
               </div>
             </div>
-            <div className="case5">
-              <div className=" col-12 case5"></div>
 
-              <div className=" col-12 selectbar  ">
-                <div style={{ textAlign: "center", marginBottom: "10px" }}>Selected Value: {fixedValues[sliderValue]}</div>
+            <div className="case5 col-12" style={{ justifyContent: 'left', marginTop: '5%' }}>
+              <div className="title-page5" style={{ display: 'flex', textAlign: 'center', marginLeft: '7%' }}>
+                <h2>Firm Details</h2>
+              </div>
+              <div className="col-6 selectbar">
+                <div className="selected-value" style={{ textAlign: "left", marginBottom: "5%", }}>
+                  Selected Value: {fixedValues[sliderValue]}
+                </div>
                 <div style={{ marginLeft: "20px", display: "flex", justifyContent: "space-between" }}>
                   {fixedValues.map((value, index) => (
                     <div key={index}>{value}</div>
                   ))}
                 </div>
+
                 <div style={{ marginBottom: "40px" }}>
                   <input type="range" min="0" max={fixedValues.length - 1} step="1" value={sliderValue} onChange={handleSliderChange} style={{ width: "100%" }} />
                 </div>
+
               </div>
-              <div className=" col-12">
-                <hr className="hr" />
+
+              <div className="section-button col-6">
+                <hr className="hr" style={{ marginLeft: '10%', width: '1000%' }} />
                 {sliderValue === 0 && (
-                  <p className="p" style={{ color: "red" }}>
-                    Please select company size
-                  </p>
+                  <h6 style={{ fontSize: '14px', marginLeft: '15%' }}>How did you hear about the PMS ?  </h6>
                 )}
               </div>
 
-              <div className=" col-12 case5">
-                <div className="container selection">
-                  <h2>How did you hear about PMS Solutions? </h2>
 
-                  <div>
-                    <div>
-                      {colors.map((color, index) => (
-                        <button key={index} className={`toggle-button ${buttonStates[index] ? "active" : ""}`} onClick={() => handleToggle(index)}>
-                          {color}
-                        </button>
-                      ))}
-                      <div style={{ marginTop: "10px" }}>{selectedButton !== null && <p>Sorce Of Information : {colors[selectedButton]} </p>}</div>
-                    </div>
-                  </div>
-                </div>
+              <div className="button-section col-12" style={{ marginLeft: '5%' }}>
+                {colors.map((color, index) => (
+                  <button key={index} className={`toggle-button ${buttonStates[index] ? "active" : ""}`} onClick={() => handleToggle(index)}>
+                    {color}
+                  </button>
+                ))}
               </div>
+
+              <div style={{ marginTop: "10px" }}>
+                {selectedButton !== null && <p>Source Of Information: {colors[selectedButton]} </p>}
+              </div>
+
             </div>
+            <button style={{ background: 'rgb(58, 145, 245)', border: 'none', color: 'white', borderRadius: '5px', height: '30px', width: '80px', marginLeft: '7%', marginTop:'2%' }}>Next</button>
+            <div>
+
+            </div>
+
 
             <div className="toast">
               <ToastContainer />
@@ -1320,77 +1353,102 @@ const SignUp = () => {
                 <MultiStage steps={totalSteps} currentStepForm={2} stageNames={stageNames} />
               </div>
             </div>
-            <div className="col-12"></div>
+            <div className='firmservices-container col-12' style={{ display: 'flex', width: '100%', flexWrap: 'wrap' }}>
+              <div className="firmservicessub-container col-12" style={{ color: 'black', padding: '20px' }}>
+                <div className="col-12" style={{ textAlign: 'left', marginBottom: '20px', margin: '2%' }}>
+                  <h2 style={{ fontSize: '35px' }}> Services your firm offers </h2>
 
-            <div className=" col-12 case6">
-              <div className="container">
-                <button onClick={() => handleButtonClick2("TaxPrepration")} style={{ backgroundColor: buttonStates2.TaxPrepration ? "#043a77" : "#3498db" }}>
-                  Tax Prepration
-                </button>
-                <button onClick={() => handleButtonClick2("TaxPlanning")} style={{ backgroundColor: buttonStates2.TaxPlanning ? "#043a77" : "#3498db" }}>
-                  Tax Planning
-                </button>
-                <button onClick={() => handleButtonClick2("Advisory")} style={{ backgroundColor: buttonStates2.Advisory ? "#043a77" : "#3498db" }}>
-                  Advisory
-                </button>
-                <button onClick={() => handleButtonClick2("Resolution")} style={{ backgroundColor: buttonStates2.Resolution ? "#043a77" : "#3498db" }}>
-                  Resolution
-                </button>
-                <button onClick={() => handleButtonClick2("Payroll")} style={{ backgroundColor: buttonStates2.Payroll ? "#043a77" : "#3498db" }}>
-                  Payroll
-                </button>
-                <button onClick={() => handleButtonClick2("Accounting")} style={{ backgroundColor: buttonStates2.Accounting ? "#043a77" : "#3498db" }}>
-                  Accounting
-                </button>
-                <button onClick={() => handleButtonClick2("Audit")} style={{ backgroundColor: buttonStates2.Audit ? "#043a77" : "#3498db" }}>
-                  Audit
-                </button>
-                <button onClick={() => handleButtonClick2("LawFirm")} style={{ backgroundColor: buttonStates2.LawFirm ? "#043a77" : "#3498db" }}>
-                  Law firm
-                </button>
-                <button onClick={() => handleButtonClick2("Bookkeeping")} style={{ backgroundColor: buttonStates2.Bookkeeping ? "#043a77" : "#3498db" }}>
-                  Bookkeeping
-                </button>
-                <button onClick={() => handleButtonClick2("Other")} style={{ backgroundColor: buttonStates2.Other ? "#043a77" : "#3498db" }}>
-                  Other
-                </button>
+                </div>
+                <div className='firmservices-btn col-12' style={{ display: 'flex', flexDirection: 'row', gap: '20px', margin: '2%', fontSize: '12px', paddingRight: '2%', }}>
 
+
+                  <div className='tax-preparation col-6' >
+                    <button type="button" className="button1" style={{ border: '1px solid rgb(58, 145, 245)', borderRadius: '5px', outline: 'none', height: '5vh', width: '100%', backgroundColor: buttonStates2.TaxPrepration ? "#043a77" : "#3498db", color: 'white' }} onClick={() => handleButtonClick2("TaxPrepration")} ><lable> Tax preparation </lable></button>
+                  </div>
+
+                  <div className='planning col-6' >
+                    <button type="button" className="button2" style={{ border: '1px solid rgb(58, 145, 245)', borderRadius: '5px', outline: 'none', height: '5vh', width: '100%', backgroundColor: buttonStates2.TaxPlanning ? "#043a77" : "#3498db", color: 'white' }} onClick={() => handleButtonClick2("TaxPlanning")}><lable>Tax planning</lable></button>
+                  </div>
+
+                  <div className='advisory col-6' >
+                    <button type="button" className="button3" style={{ border: '1px solid rgb(58, 145, 245)', borderRadius: '5px', outline: 'none', height: '5vh', width: '100%', backgroundColor: buttonStates2.Advisory ? "#043a77" : "#3498db", color: 'white' }} onClick={() => handleButtonClick2("Advisory")} ><lable>Advisory</lable></button>
+                  </div>
+
+                  <div className='resolution col-6' >
+                    <button type="button" className="button4" style={{ border: '1px solid rgb(58, 145, 245)', borderRadius: '5px', outline: 'none', height: '5vh', width: '100%', backgroundColor: buttonStates2.Resolution ? "#043a77" : "#3498db", color: 'white' }} onClick={() => handleButtonClick2("Resolution")} ><lable>Resolution</lable></button>
+                  </div>
+
+                  <div className='payroll col-6' >
+                    <button type="button" className="button5" style={{ border: '1px solid rgb(58, 145, 245)', borderRadius: '5px', outline: 'none', height: '5vh', width: '100%', backgroundColor: buttonStates2.Payroll ? "#043a77" : "#3498db", color: 'white' }} onClick={() => handleButtonClick2("Payroll")} ><lable>Payroll</lable></button>
+                  </div>
+                </div>
+
+                <div className='second-list col-12' style={{ flexDirection: 'row', gap: '20px', marginLeft: '2%', fontSize: '12px', paddingRight: '2%', display: 'flex', width: '100%' }}>
+                  <div className='accounting col-4' >
+                    <button type="button" className="button6" style={{ border: '1px solid rgb(58, 145, 245)', borderRadius: '5px', outline: 'none', height: '5vh', width: '100%', backgroundColor: buttonStates2.Accounting ? "#043a77" : "#3498db", color: 'white' }} onClick={() => handleButtonClick2("Accounting")} ><lable>Accounting</lable></button>
+                  </div>
+
+                  <div className='audit col-4' >
+                    <button type="button" className="button7" style={{ border: '1px solid rgb(58, 145, 245)', borderRadius: '5px', outline: 'none', height: '5vh', width: '100%', backgroundColor: buttonStates2.Audit ? "#043a77" : "#3498db", color: 'white' }} onClick={() => handleButtonClick2("Audit")}><lable>Audit</lable></button>
+                  </div>
+
+                  <div className='law-firm col-4' >
+                    <button type="button" className="button8" style={{ border: '1px solid rgb(58, 145, 245)', borderRadius: '5px', outline: 'none', height: '5vh', width: '100%', backgroundColor: buttonStates2.LawFirm ? "#043a77" : "#3498db", color: 'white' }} onClick={() => handleButtonClick2("LawFirm")}><lable>Law firm</lable></button>
+                  </div>
+
+                  <div className='bookkeeping col-4' >
+                    <button type="button" className="button9" style={{ border: '1px solid rgb(58, 145, 245)', borderRadius: '5px', outline: 'none', height: '5vh', width: '100%', backgroundColor: buttonStates2.Bookkeeping ? "#043a77" : "#3498db", color: 'white' }} onClick={() => handleButtonClick2("Bookkeeping")} ><lable>Bookeeping</lable></button>
+                  </div>
+
+                  <div className='other col-4' >
+                    <button type="button" className="button10" style={{ border: '1px solid rgb(58, 145, 245)', borderRadius: '5px', outline: 'none', height: '5vh', width: '100%', backgroundColor: buttonStates2.Other ? "#043a77" : "#3498db", color: 'white' }} onClick={() => handleButtonClick2("Other ")}><lable>Other</lable></button>
+                  </div>
+                </div>
                 <div>
                   <p>{buttonsOn.length > 0 && <p>Buttons that are ON: {buttonsOn.join(", ")}</p>}</p>
                 </div>
-                <div>
+
+                <div style={{ marginLeft: '2%', }}>
                   <label>
-                    <input type="checkbox" onChange={handleSelectAll} />
+                    <input type="checkbox" onChange={handleSelectAll} style={{ marginTop: '2%', marginRight: '5px' }} />
                     Select All
                   </label>
-                  <button onClick={submitFerminfo}>Next</button>
+                  <button onClick={submitFerminfo} style={{ background: 'rgb(58, 145, 245)', border: 'none', color: 'white', borderRadius: '5px', height: '30px', width: '80px', margin: '0' }}>Next</button>
                 </div>
               </div>
+
+
             </div>
 
-            <div className="toast">
-              <ToastContainer />
-            </div>
           </>
+
+
         );
+
 
       case 7:
         return (
           <div>
-            <div className="col-12" style={{ display: "flex" }}>
-              <div className="col-4" style={{ margin: "20px" }}>
-                <img style={{ width: "30px" }} src={logo} alt="" />
-                <b>PMS Solutions</b>
+            <div className="nav-header col-12" style={{ display: "flex" }}>
+              <div className="col-2" style={{ margin: "20px", display: 'flex' }}>
+                <div className="company-name" style={{ display: 'flex' }}>
+                  <div>
+                    <img style={{ width: "30px" }} src={logo} alt="" />
+                    <b>PMS Solutions</b>
+                  </div>
+                </div>
               </div>
-              <div className="path col-12" style={{ marginRight: "200px" }}>
-                <MultiStage steps={totalSteps} currentStepForm={2} stageNames={stageNames} />
+              <div className="path col-10" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', }}>
+                <div className="steps" style={{ justifyContent: 'center', alignContent: 'center' }}>
+                  <MultiStage steps={totalSteps} currentStepForm={2} stageNames={stageNames} />
+                </div>
               </div>
             </div>
 
             <div className="containerf">
               <div className=" col-12 case5">
-                <div className="container selection">
-                  <h1>Your role in the firm </h1>
+                <div className="container-selection" style={{ margin: '7%' }}>
+                  <h1 style={{ marginLeft: '2%' }}>Your role in the firm </h1>
 
                   <div>
                     <div>
@@ -1402,6 +1460,10 @@ const SignUp = () => {
                       <div style={{ marginTop: "10px" }}>{selectedButton3 !== null && <p>Sorce Of Information : {colors3[selectedButton3]} </p>}</div>
                     </div>
                   </div>
+
+                  <button className="next" style={{ background: 'rgb(58, 145, 245)', border: 'none', color: 'white', borderRadius: '5px', height: '40px', width: '80px', marginLeft: '2%', }}>
+                    Next
+                  </button>
                 </div>
               </div>
             </div>
@@ -1409,6 +1471,162 @@ const SignUp = () => {
         );
 
       case 8:
+
+        return (
+          <>
+            <ToastContainer />
+            <div className="nav-header col-12" style={{ display: "flex" }}>
+              <div className="col-2" style={{ margin: "20px", display: 'flex' }}>
+                <div className="company-name" style={{ display: 'flex' }}>
+                  <div>
+                    <img style={{ width: "30px" }} src={logo} alt="" />
+                    <b>PMS Solutions</b>
+                  </div>
+                </div>
+              </div>
+              <div className="path col-10" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', }}>
+                <div className="steps" style={{ justifyContent: 'center', alignContent: 'center' }}>
+                  <MultiStage steps={totalSteps} currentStepForm={3} stageNames={stageNames} />
+                </div>
+              </div>
+            </div>
+            <div className='firmsetting-container col-12' style={{ display: 'flex' }}>
+              <div className="firmleft-container col-12" style={{ color: 'black', padding: '20px' }}>
+                <div className="col-12" style={{ textAlign: 'left', marginBottom: '20px', margin: '2%' }}>
+                  <h1 style={{ fontSize: '35px' }}>Firm Setting</h1>
+                </div>
+
+                <div className="font-class col-12" style={{ textAlign: 'left', marginBottom: '10px', margin: '2%' }}>
+                  <h2 style={{ fontSize: '25px' }}>PMS <NavLink style={{ color: 'rgb(58, 145, 245)' }}> Pro's</NavLink> </h2>
+                </div>
+
+                <div className="powerful-text col-12" style={{ display: 'flex', alignItems: 'center', marginBottom: '20px', margin: '2%' }}>
+                  <div className='font col-4' style={{ flex: '1', textAlign: 'left' }}>
+                    <p style={{ fontSize: '16px' }}>A powerful, integrated platform to manage teams, clients, projects</p>
+                  </div>
+
+                  <div>
+                    <h6 style={{ fontSize: '14px', marginLeft: 'auto' }}>From $40/mo per user</h6>
+                  </div>
+                </div>
+
+                <div className='middle-section col-12' style={{ display: 'flex', margin: '1%' }}>
+                  <div className="col-2" style={{ textAlign: 'left', marginBottom: '20px', margin: '1%', width: '100%', flexDirection: 'column' }}>
+                    <h1 style={{ fontSize: '20px' }}>Firm Setting</h1>
+                    <div className="font-class col-12" style={{ textAlign: 'left', marginBottom: '10px', width: '100%' }}>
+                      <h5 style={{ fontSize: '14px', marginTop: '10px' }}>choose web URL  </h5>
+                      <p style={{ fontSize: '14px', marginTop: '2%' }}>You will be able to set up a fully custom domain later</p>
+                    </div>
+                    <div className='urlinput col-8' >
+                      <input
+                        type='text'
+                        style={{
+                          width: '100%',
+                          padding: '10px',
+                          boxsizing: 'border-box',
+                          border: '1px solid #ccc',
+                          borderRadius: '10px'
+                        }}
+                        onChange={(e) => setUrl(e.target.value)}
+                      />
+                    </div>
+                    <div style={{ marginTop: '2%' }}>
+                      <label className="label" id="domin_lable">
+                        .pms.com
+                      </label>
+                    </div>
+                    <div className='currency-section col-12' style={{ display: 'flex' }}>
+                      <div className='input-col col-12' style={{ marginTop: '2%', flexWrap: 'wrap', fontSize: '14px' }}>
+                        <div className='currency col-3' style={{ marginRight: '2%' }}>
+                          <label style={{ fontSize: '14px' }}>Default currency you cannot change it later</label>
+
+                          <Select value={selectedCurrency} onChange={handleCurrencyChange} options={currencies} />
+                        </div>
+
+                        <div className='language-class col-5' style={{ marginTop: '3%' }}>
+                          <label style={{ fontSize: '14px' }}>Default Language</label>
+                          <Select value={selectedLanguage} onChange={handleLanguageChange} options={languages} />
+                        </div>
+
+                      </div>
+                    </div>
+                    <div className='continue-btn col-6' style={{ width: '30%', display: 'flex', justifyContent: 'left', marginTop: '5%' }}>
+                      <button style={{ background: 'rgb(58, 145, 245)', border: 'none', color: 'white', borderRadius: '5px', height: '30px', width: '80px' }}>Continue</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="imageright-container col-12" style={{ color: 'black', flexDirection: 'column' }}>
+                <div className="image-section col-6" style={{ textAlign: 'center', minHeight: '20vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                  <div className='col-6'>
+                    <img src={setting} alt='' style={{ height: '400px', width: '600px', margin: '20%' }} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
+        );
+      case 9:
+        return (
+          <>
+            <ToastContainer />
+            <div className="nav-header col-12" style={{ display: "flex" }}>
+              <div className="col-2" style={{ margin: "20px", display: 'flex' }}>
+                <div className="company-name" style={{ display: 'flex' }}>
+                  <div>
+                    <img style={{ width: "30px" }} src={logo} alt="" />
+                    <b>PMS Solutions</b>
+                  </div>
+                </div>
+              </div>
+              <div className="path col-10" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', }}>
+                <div className="steps" style={{ justifyContent: 'center', alignContent: 'center' }}>
+                  <MultiStage steps={totalSteps} currentStepForm={3} stageNames={stageNames} />
+                </div>
+              </div>
+            </div>
+            <div className="setpassword-container col-12" style={{ display: 'flex', justifyContent: 'center', marginTop: '5%' }}>
+              <div className='password-sub-container col-12 ' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', maxWidth: '600px' }}>
+                <div className='pagetitle' style={{ fontSize: '30px', textAlign: 'center' }}>
+                  <h1 style={{ marginBottom: '5%', fontSize: '38px', textAlign: 'center' }}>Set Password</h1>
+                </div>
+                <div className="form-password col-9" style={{ marginBottom: '6%', marginTop: '5%' }}>
+                  <div className="password-input" style={{ display: 'flex', flexDirection: 'column', position: 'relative' }}>
+                    <label htmlFor="password">Password</label>
+                    <input
+                      type={!passShow ? "password" : "text"} onChange={setValP} value={inppass.password} name="password" id="password" placeholder="Enter Your password"
+                      style={{ height: '5vh', width: '100%', border: "1px solid rgb(100, 149, 237)", borderRadius: '10px', textAlign: 'left', fontSize: '12px' }}
+                    />
+                    <div style={{ position: 'absolute', top: '70%', transform: 'translateY(-50%)', right: '20px', cursor: 'pointer' }} onClick={() => setPassShow(!passShow)} >
+                      {!passShow ? <FaEyeSlash /> : <FaEye />}
+                    </div>
+                  </div>
+                </div>
+
+
+                <div className="formpassword col-9">
+                  <div className="password-input" style={{ display: 'flex', flexDirection: 'column', position: 'relative' }}>
+                    <label htmlFor="confirmPassword">Confirm Password</label>
+                    <input
+                      type={!cpassShow ? "password" : "text"} onChange={setValP} value={inppass.cpassword} name="cpassword" id="cpassword" placeholder="Confirm password"
+                      style={{ height: '5vh', width: '100%', border: "1px solid rgb(100, 149, 237)", borderRadius: '10px', textAlign: 'left', fontSize: '12px' }}
+                    />
+                    <div style={{ position: 'absolute', top: '70%', transform: 'translateY(-50%)', right: '20px', cursor: 'pointer' }} onClick={() => setCPassShow(!cpassShow)}>
+                      {!cpassShow ? <FaEyeSlash /> : <FaEye />}
+                    </div>
+                  </div>
+                </div>
+                <div className='password-btn col-9'>
+                  <div className='contiunebutton-btn' style={{ justifyContent: 'left', marginTop: '5%' }}>
+                    <button style={{ background: 'rgb(58, 145, 245)', border: 'none', color: 'white', borderRadius: '5px', height: '30px', width: '80px', margin: '0' }} onClick={submitPassword}>Continue</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
+        );
+
+      case 10:
         return (
           <>
             <div className="col-12" style={{ display: "flex" }}>
@@ -1420,170 +1638,105 @@ const SignUp = () => {
                 <MultiStage steps={totalSteps} currentStepForm={2} stageNames={stageNames} />
               </div>
             </div>
+            <div className='datepicker-container col-12' style={{ display: 'flex', }}>
+              <div className="firmleft-container col-12" style={{ color: 'black', padding: '20px', width: '50%', border: '0.5px solid #AFDBF5' }}>
+                <div className="h1-container col-12" style={{ textAlign: 'left', marginBottom: '20px', margin: '2%' }}>
+                  <h1 style={{ fontSize: '35px' }}>Book a free implementation session</h1>
+                </div>
+                <div className="font-class col-12" style={{ textAlign: 'left', marginBottom: '10px', margin: '2%', }}>
+                  <p style={{ fontSize: '12px' }}>
+                    10 out of 10 TaxDome firm saw faster ROI and implemementation by scheduling an intro session right away. Please choose a time that works best for your team that works best for your team-our experienced staff are ready to set your practice up for success.
 
-            <div className=" col-12 case8">
-              <div className="container">
-                <div className="firm">
-                  <h2>Firm Settings</h2>
-
-                  <div className="firm-info">
-                    <p>
-                      A powerful,integrated platform <br /> to manage teams,clients,projects.
-                    </p>
-                    <p>
-                      <b>from $50/mo per user</b> <br />
-                      (with a 3-year subscription plan)
-                    </p>
+                  </p>
+                </div>
+                <div className="col-12" style={{ display: 'flex', alignItems: 'center', marginBottom: '20px', marginTop: '70%', background: '#AFDBF5', color: 'GrayText', height: '10vh', fontSize: '16px' }}>
+                  <div className='col-4' style={{ flex: '1', textAlign: 'left', }}>
+                    <p style={{ fontSize: '14px', }}>Web conferencing deatils provided upon Confirmation</p>
                   </div>
 
-                  <h3>Firm Setting</h3>
+                </div>
 
-                  <p>choose web URL</p>
-                  <p>You will be ale to set up a fully custom domain(without.pms.com) later</p>
+                <div>
+                  <NavLink to="/" style={{ color: 'rgb(58, 145, 245)' }}>Skip booking for now</NavLink>
+                </div>
 
-                  <div className="url_container">
-                    <input type="text" id="url_input" value={url} onChange={handleUrlChange} className="url" placeholder="Enter your URL" />
-                    <label className="label" id="domin_lable">
-                      .pms.com
-                    </label>
+              </div>
+
+              <div className="dateright-container col-12" style={{ color: 'black', flexDirection: 'column', padding: '2%' }}>
+                <div className='right-content-title'>
+                  <h5 style={{ fontSize: '26px', }}>Select a Date & Time </h5>
+                </div>
+
+                <div className='time-zone-container' style={{ display: 'flex', gap: '10px', }}>
+
+                  <div className='language-choose col-6' style={{ marginTop: '2%' }}>
+                    <label style={{ fontSize: '14px' }}>Default Language</label>
+                    <Select className='select-inputbox col-12' style={{ height: '5vh', width: '100%', border: "1px solid rgb(100, 149, 237)", borderRadius: '10px' }} onChange={(e) => setSelectedLanguage(e.target.value)}>
+                      <option value="">Select a language</option>
+                      {languages.map(language => (
+                        <option key={language.code} value={language.name}>
+                          {language.name}
+                        </option>
+                      ))}
+                    </Select>
+
+
                   </div>
 
-                  <div className="currency-container">
-                    <div className="currency">
-                      <label>You cannot Change it later</label>
-                      <br />
-
-                      <div>
-                        <label>Select Currency: </label>
-                        <Select value={selectedCurrency} onChange={handleCurrencyChange} options={currencies} placeholder="Select a currency" />
-                      </div>
-                    </div>
-                    <br />
-                    <div>
-                      <label>Select Language: </label>
-                      <Select value={selectedLanguage} onChange={handleLanguageChange} options={languages} placeholder="Select a language" />
-
-                      {selectedLanguage && <p>You selected: {selectedLanguage.label}</p>}
-                    </div>
+                  <div className='timezone-choose col-6' style={{ marginTop: '1.5%' }}>
+                    <label style={{ fontSize: '16px' }}> Time Zone</label>
+                    <Select placeholder="Select a Time" />
                   </div>
-                  {/* submiturl */}
-                  <button className="button" onClick={submiturl}>
-                    Continue
-                  </button>
+
+                </div>
+
+                <div className="date-section col-12" style={{ minHeight: '20vh', display: 'flex', marginTop: '2%' }}>
+                  <div className='col-12'>
+                    <label style={{ fontSize: '16px' }}> Date </label>
+                    <input
+                      style={{
+                        width: '50%',
+                        padding: '10px',
+                        boxsizing: 'border-box',
+                        border: '1px solid #ccc',
+                        borderRadius: '10px'
+                      }}
+                      type="date"
+                      value={selectedDate}
+                      onChange={(e) => setSelectedDate(e.target.value)}
+                    />
+                  </div>
+
+                </div>
+                <div className='button-btn col-12' style={{ justifyContent: 'center' }}>
+                  <button style={{ background: 'rgb(58, 145, 245)', border: 'none', color: 'white', borderRadius: '5px', height: '30px', width: '80px', marginLeft: '5px' }} onClick={handleNextClick} >Next</button>
                 </div>
               </div>
-              <div className="image">
-                <img src={firmsetting} alt="" />
-              </div>
-            </div>
-            <br />
-            {/* <button onClick={nextStep} className="next">
-              Next
-            </button>
-            <button onClick={prevStep} className="pre">
-              Previous
-            </button> */}
-            <div className="toast">
-              <ToastContainer />
-            </div>
-          </>
-        );
-      case 9:
-        return (
-          <>
-            <div className="header">
-              <div className="logo">
-                <img src={logo} alt="" />
-                <b>Microtech Solutions</b>
-              </div>
-              <div className="setting-path">
-                <p className="number1">1</p>
-                <p>Email</p>
-                <p className="number2">2</p>
-                <p>Information</p>
-                <p className="number3">3</p>
-                <p>Settings</p>
-                <p className="number4">4</p>
-                <p>Set Password</p>
-              </div>
-              <div className="header-info">
-                <button className="login-btn" onClick={LoginButton}>
-                  Login
-                </button>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA-bIT8cA6U4J_rVPIp6RXAGuzlO3X5KWSBQ&usqp=CAU" alt="" />
-                <h3>EN</h3>
-              </div>
-            </div>
-            <div>
-              <div className="pass" style={{ margin: "auto", width: "30%" }}>
-                <div className="form_input">
-                  <div className="passvalid">
-                    <h1 style={{ alignItems: "center", justifyContent: "center", textContent: "center" }}>Set Password</h1>
-                  </div>
 
-                  <div className="form_input">
-                    <label htmlFor="password">Password</label>
-                    <div className="two">
-                      <input type={!passShow ? "password" : "text"} onChange={setValP} value={inppass.password} name="password" id="password" placeholder="Enter Your password" />
-                      <div className="showpass" onClick={() => setPassShow(!passShow)}>
-                        {!passShow ? <FaEyeSlash /> : <FaEye />}
-                      </div>
-                    </div>
-                  </div>
 
-                  <div className="form_input">
-                    <label htmlFor="password">Confirm Password</label>
-                    <div className="two">
-                      <input type={!cpassShow ? "password" : "text"} onChange={setValP} value={inppass.cpassword} name="cpassword" id="cpassword" placeholder="Confirm password" />
-                      <div className="showpass" onClick={() => setCPassShow(!cpassShow)}>
-                        {!cpassShow ? <FaEyeSlash /> : <FaEye />}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <button onClick={submitPassword} style={{ justifyContent: "center", marginLeft: "200px", marginRight: "150px", marginTop: "50px" }} className="next">
-                  Continue
-                </button>
-              </div>
-            </div>
-            <div className="toast">
-              <ToastContainer />
             </div>
           </>
         );
 
       // //book session
-      case 10:
+      case 11:
         return (
           <>
-            <div className="header">
-              <div className="logo">
-                <img src={logo} alt="" />
-                <b>Microtech Solutions</b>
+            <div className="col-12" style={{ display: "flex" }}>
+              <div className="col-4" style={{ margin: "20px" }}>
+                <img style={{ width: "30px" }} src={logo} alt="" />
+                <b>PMS Solutions</b>
               </div>
-              <div className="setting-path">
-                <p className="number1">1</p>
-                <p>Email</p>
-                <p className="number2">2</p>
-                <p>Information</p>
-                <p className="number3">3</p>
-                <p>Settings</p>
-                <p className="number4">4</p>
-                <p>Set Password</p>
-              </div>
-              <div className="header-info">
-                <button className="login-btn" onClick={LoginButton}>
-                  Login
-                </button>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA-bIT8cA6U4J_rVPIp6RXAGuzlO3X5KWSBQ&usqp=CAU" alt="" />
-                <h3>EN</h3>
+              <div className="path col-12" style={{ marginRight: "200px", marginBottom: '10%' }}>
+                <MultiStage steps={totalSteps} currentStepForm={2} stageNames={stageNames} />
               </div>
             </div>
 
-            <div className="message" style={{ justifyContent: "center" }}>
+            <div className="message col-7" style={{ justifyContent: "center", marginLeft: '10%', flexWrap: 'wrap' }}>
               <h2>Your Information</h2>
-              <p style={{ color: "green", width: "500PX" }}>"SNP TaxConsultant, welcome to the pinnacle of tax excellence with PMS Solutions. Together, let's redefine financial success and deliver unparalleled solutions. Your journey to seamless tax management starts here!"</p>
+              <p style={{ color: "green", fontSize: "16px" }}> "SNP TaxConsultant, welcome to the pinnacle of tax excellence with PMS Solutions. Together, let's redefine financial success and deliver unparalleled solutions. Your journey to seamless tax management starts here!"</p>
             </div>
+
 
             <div className="toast">
               <ToastContainer />

@@ -3,6 +3,8 @@
   display: flex;
   justify-content: space-between;
   position: relative;
+  align-items: center;
+  gap: 100px;
 }
 
 .progress-step {
@@ -16,6 +18,8 @@
   font-weight: bold;
   background-color: white;
   color: #3498db;
+
+  
 }
 
 .progress-step.completed {
@@ -38,7 +42,6 @@
 .line {
   position: absolute;
   height: 2px;
-  width: 100%;
   background-color: #3498db;
   top: 50%;
   left: 50%;
@@ -51,6 +54,21 @@
   opacity: 1;
 }
 
-.progress-step.completed + .progress-step .line {
+.progress-step.completed+.progress-step .line {
   transform: translate(-50%, -50%) scaleX(1);
+}
+
+@media screen and (max-width: 480px) {
+  .progress-bar {
+    font-size: 8px;
+    gap: 5px;
+    width: 120%;
+    margin-left: 5%;
+
+  }
+
+  .progress-step {
+    width: 20px;
+    height: 20px;
+  }
 }
